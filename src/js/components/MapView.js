@@ -4,6 +4,7 @@ import ShareModal from 'js/components/modals/Share';
 import Spinner from 'js/components/shared/Spinner';
 import Controls from 'js/components/Controls';
 import MapView from 'esri/views/MapView';
+import FeatureLayer from 'esri/layers/FeatureLayer';
 import React, { Component } from 'react';
 import EsriMap from 'esri/Map';
 
@@ -38,6 +39,30 @@ export default class Map extends Component {
     });
     // Now that we have created our Map and Mapview, here is where we would add some layers!
     // see https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=layers-featurelayer for an example!
+
+    const bikeTrailArlington = new FeatureLayer({
+      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
+    })
+
+    //adds symbol for breweries
+    const breweriesVirginiaRenderer = {
+      "type": "simple",
+      "symbol": {
+        "type": "picture-marker",
+        "url": "https://i.imgur.com/7HQd1S8.png",
+        "width": 25,
+        "height": 25
+      }
+    }
+
+    const breweriesVirginia = new FeatureLayer({
+      url: "https://maps.vedp.org/arcgis/rest/services/OpenData/OpenDataLayers/MapServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=json",
+      renderer: breweriesVirginiaRenderer
+    })
+
+    map.add(bikeTrailArlington)
+    map.add(breweriesVirginia)
+
   }
 
   toggleLocateModal = () => {

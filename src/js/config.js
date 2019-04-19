@@ -11,13 +11,13 @@ export const TEXT = {
 };
 
 export const MAP_OPTIONS = {
-  basemap: 'streets-vector'
+  basemap: 'dark-gray-vector'
 };
 
 export const VIEW_OPTIONS = {
   ui: { components: ['logo', 'attribution'] },
-  center: [-35.55, 26.53],
-  zoom: 2
+  center: [-77.10, 38.88],
+  zoom: 11.7
 };
 
 export const URLS = {
