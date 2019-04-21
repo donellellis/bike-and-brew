@@ -1,0 +1,40 @@
+.app-header {
+  background-image: linear-gradient($theme-light-yellow, $theme-dark-yellow);
+  justify-content: flex-end;
+  flex-direction: column;
+  position: absolute;
+  display: flex;
+  color:$theme-darkgray;
+  height: calc(100% - (16px +
+   20px + 20px));
+  width: 400px;
+  margin: 20px;
+  z-index: 5;
+}
+
+.app-legend {
+  position: relative;
+  background-color: $theme-darkgray;
+  width: 100%;
+  height: 33%;
+}
+
+.app-title, .app-subtitle, .app-location {
+  align-self: flex-end;
+  display: flex;
+  margin: 0px 20px;
+  text-transform: lowercase;
+}
+
+.app-title {
+  font-size: 18px;
+}
+
+.app-subtitle {
+  font-size: 30px;
+}
+
+.app-location {
+  font-size: 24px;
+  margin-bottom: 10px;
+}

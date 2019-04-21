@@ -6,8 +6,9 @@ export const INITIAL_STATE = {
 };
 
 export const TEXT = {
-  title: 'Esri Example',
-  subtitle: 'Example with React, Esri, Sass, and more.'
+  title: 'Washington and Old Dominion Trail',
+  subtitle: 'Bike and Brew',
+  location: 'Arlington'
 };
 
 export const MAP_OPTIONS = {
@@ -16,7 +17,7 @@ export const MAP_OPTIONS = {
 
 export const VIEW_OPTIONS = {
   ui: { components: ['logo', 'attribution'] },
-  center: [-77.10, 38.88],
+  center: [-77.13, 38.88],
   zoom: 11.7
 };
 

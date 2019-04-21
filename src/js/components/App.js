@@ -1,5 +1,5 @@
 import MapView from 'js/components/MapView';
-import Header from 'js/components/Header';
+import Sidebar from 'js/components/Sidebar';
 import React, { Component } from 'react';
 import { TEXT } from 'js/config';
 
@@ -9,7 +9,7 @@ export default class App extends Component {
   render () {
     return (
       <div className='root'>
-        <Header title={TEXT.title} subtitle={TEXT.subtitle} />
+        <Sidebar title={TEXT.title} subtitle={TEXT.subtitle} location={TEXT.location}/>
         <MapView />
       </div>
     );
