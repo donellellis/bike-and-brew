@@ -12,11 +12,89 @@
   z-index: 5;
 }
 
-.app-legend {
-  position: relative;
+.app-legend, .legend-bike-routes {
+  display: flex;
+  flex-direction: column;
   background-color: $theme-darkgray;
   width: 100%;
-  height: 33%;
+  padding: 20px;
+  color: white;
+
+  tr {
+    align-self: flex-end;
+  }
+
+  td{
+    font-size: 20px;
+    text-align: right;
+    min-width: 50px;
+    padding-left: 5px;
+  }
+
+  .legend-symbol{
+    font-size: 50px;
+    line-height: 0px;
+    padding-bottom: 35px;
+  }
+
+  .legend-wod{
+    color: $theme-light-yellow;
+  }
+
+  .legend-primary-trail{
+    color: $theme-dark-yellow
+  }
+
+  .legend-off-street-trail{
+    color: $theme-dark-yellow;
+    font-size: 25px;
+    padding-bottom: 0px;
+  }
+
+  .legend-bike-lane{
+    color: $theme-light-pink;
+    font-size: 25px;
+    padding-bottom: 20px;
+  }
+
+  .legend-rec-route{
+    color: $theme-bright-pink;
+    font-size: 25px;
+    padding-bottom: 20px;
+  }
+
+  .legend-bike-routes-title{
+    h4{
+      font-size: 20px;
+      font-weight: normal;
+      margin: 0px;
+    }
+    p{
+      font-size: 16px;
+      font-weight: normal;
+      font-style: italic;
+      margin: 0px;
+      color: $theme-light-yellow;
+      padding-top: 5px;
+    }
+  }
+
+  img{
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.legend-bike-routes{
+  padding-top: 0px;
+  padding-bottom: 20px;
+  td{
+    font-size: 18px;
+    padding-bottom: 5px;
+  }
+  .legend-all{
+    font-size: 20px;
+  }
 }
 
 .app-title, .app-subtitle, .app-location {
