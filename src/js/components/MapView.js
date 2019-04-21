@@ -40,9 +40,136 @@ export default class Map extends Component {
     // Now that we have created our Map and Mapview, here is where we would add some layers!
     // see https://developers.arcgis.com/javascript/latest/sample-code/sandbox/index.html?sample=layers-featurelayer for an example!
 
-    const bikeTrailArlington = new FeatureLayer({
-      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json"
-    })
+    const bikeTrailVirginiaRenderer = {
+      "type": "unique-value",
+      "field": "Bike_Route_Name",
+      "uniqueValueInfos": [
+        {
+          "value": "Washington & Old Dominion Trail",
+          "symbol": {
+            "color": "#FCF6B1", //light yellow
+            "width": 4,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Washington & Old Dominion Trail"
+        },
+        {
+          "value": "Mount Vernon Trail",
+          "symbol": {
+            "color": "#F7B32B",//dark yellow
+            "width": 3,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Mount Vernon Trail"
+        },
+        {
+          "value": "Custis Trail",
+          "symbol": {
+            "color": "#F7B32B",//dark yellow
+            "width": 3,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Custis Trail"
+        }
+      ]
+    }
+
+    const bikeTrailFacilityVirginiaRenderer = {
+      "type": "unique-value",
+      "field": "Facility_Name",
+      "uniqueValueInfos": [
+        {
+          "value": "Four Mile Run Trail",
+          "symbol": {
+            "color": "#F7B32B",//dark yellow
+            "width": 2.5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Four Mile Run Trail"
+        },
+        {
+          "value": "Shirlington Connector",
+          "symbol": {
+            "color": "#F7B32B",//dark yellow
+            "width": 2.5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Shirlington Connector"
+        }
+      ]
+    }
+
+    const bikeTrailArlingtonRenderer = {
+      "type": "unique-value",
+      "field": "Route_Type",
+      "uniqueValueInfos": [
+        {
+          "value": "Recommended Route",
+          "symbol": {
+            "color": "#C5283D", //medium pink
+            "width": .5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Recommended Route"
+        },
+        {
+          "value": "Off Street Trail",
+          "symbol": {
+            "color": "#F7B32B",//dark yellow
+            "width": 1,
+            "type": "simple-line",
+            "style": "dot"
+          },
+          "label": "Off Street Trail"
+        },
+        {
+          "value": "Bicycle Lane",
+          "symbol": {
+            "color": "#FAA275", //light pink
+            "width": 1.5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Bicycle Lane"
+        },
+        {
+          "value": "Sharrow",
+          "symbol": {
+            "color": "#FAA275", //light pink
+            "width": 1.5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Sharrow"
+        },
+        {
+          "value": "Buffered Bike Lane",
+          "symbol": {
+            "color": "#FAA275", //light pink
+            "width": 1.5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Buffered Bike Lane"
+        },
+        {
+          "value": "Protected Bike Lane",
+          "symbol": {
+            "color": "#FAA275", //light pink
+            "width": 1.5,
+            "type": "simple-line",
+            "style": "solid"
+          },
+          "label": "Protected Bike Lane"
+        }
+      ]
+    }
 
     //adds symbol for breweries
     const breweriesVirginiaRenderer = {
@@ -55,12 +182,29 @@ export default class Map extends Component {
       }
     }
 
+    const bikeTrailVirginia = new FeatureLayer({
+      url: "https://services.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/Bicycle_Facility_Inventory_(view)/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json",
+      renderer: bikeTrailVirginiaRenderer
+    })
+
+    const bikeTrailFacilitiyVirginia = new FeatureLayer({
+      url: "https://services.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/Bicycle_Facility_Inventory_(view)/FeatureServer/0/query?where=1%3D1&outFields=*&outSR=4326&f=json",
+      renderer: bikeTrailFacilityVirginiaRenderer
+    })
+
+    const bikeTrailArlington = new FeatureLayer({
+      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
+      renderer: bikeTrailArlingtonRenderer
+    })
+
     const breweriesVirginia = new FeatureLayer({
       url: "https://maps.vedp.org/arcgis/rest/services/OpenData/OpenDataLayers/MapServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=json",
       renderer: breweriesVirginiaRenderer
     })
 
     map.add(bikeTrailArlington)
+    map.add(bikeTrailFacilitiyVirginia)
+    map.add(bikeTrailVirginia)
     map.add(breweriesVirginia)
 
   }
