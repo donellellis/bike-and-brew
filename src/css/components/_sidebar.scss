@@ -1,5 +1,5 @@
 .app-header {
-  background-image: linear-gradient($theme-light-yellow, $theme-dark-yellow);
+  background-image: linear-gradient($theme-light-yellow, $theme-medium-yellow);
   justify-content: flex-end;
   flex-direction: column;
   position: absolute;
@@ -114,5 +114,5 @@
 
 .app-location {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin-bottom: 25%;
 }

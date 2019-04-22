@@ -1,9 +1,10 @@
-import { MAP_OPTIONS, VIEW_OPTIONS } from 'js/config';
+import { MAP_OPTIONS, VIEW_OPTIONS, TEXT } from 'js/config';
 import LocateModal from 'js/components/modals/Locate';
 import ShareModal from 'js/components/modals/Share';
 import Spinner from 'js/components/shared/Spinner';
 import Controls from 'js/components/Controls';
 import MapView from 'esri/views/MapView';
+import Sidebar from './Sidebar';
 import FeatureLayer from 'esri/layers/FeatureLayer';
 import React, { Component } from 'react';
 import EsriMap from 'esri/Map';
@@ -19,7 +20,8 @@ export default class Map extends Component {
       counter: 0,
       shareModalVisible: false,
       locateModalVisible: false,
-      view: {}
+      view: {},
+      currentDefinitionExpression: null
     };
   }
 
@@ -53,7 +55,8 @@ export default class Map extends Component {
       url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
       renderer: bikeTrailArlingtonRenderer,
       outFields: ["Route_Type"],
-      popupTemplate: popupBikeTrailArlington
+      popupTemplate: popupBikeTrailArlington,
+      definitionExpression: this.state.currentDefinitionExpression
     })
 
     const breweriesVirginia = new FeatureLayer({
@@ -69,6 +72,12 @@ export default class Map extends Component {
 
   }
 
+  toggleDefinitionExpression = (currentDefinitionExpression) => {
+    this.setState({
+      currentDefinitionExpression
+    })
+  }
+
   toggleLocateModal = () => {
     this.setState({locateModalVisible: !this.state.locateModalVisible});
   }
@@ -81,11 +90,14 @@ export default class Map extends Component {
     const {shareModalVisible, locateModalVisible, view} = this.state;
 
     return (
-      <div ref='mapView' className='map-view'>
-        <ShareModal visible={shareModalVisible} toggleShareModal={this.toggleShareModal} />
-        <LocateModal visible={locateModalVisible} toggleLocateModal={this.toggleLocateModal} />
-        <Controls view={view} toggleShareModal={this.toggleShareModal} toggleLocateModal={this.toggleLocateModal} />
-        <Spinner active={!view.ready} />
+      <div className='root'>
+        <Sidebar title={TEXT.title} subtitle={TEXT.subtitle} location={TEXT.location} toggleDefinitionExpression={this.toggleDefinitionExpression}/>
+        <div ref='mapView' className='map-view'>
+          <ShareModal visible={shareModalVisible} toggleShareModal={this.toggleShareModal} />
+          <LocateModal visible={locateModalVisible} toggleLocateModal={this.toggleLocateModal} />
+          <Controls view={view} toggleShareModal={this.toggleShareModal} toggleLocateModal={this.toggleLocateModal} />
+          <Spinner active={!view.ready} />
+        </div>
       </div>
     );
   }
