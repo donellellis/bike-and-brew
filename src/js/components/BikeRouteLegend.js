@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 
 export default class BikeRouteLegend extends Component {
   handleSelectDefinitionExpression = (event) => {
-    // console.log('clicked ' + event.target.id)
     this.props.toggleDefinitionExpression(event.target.id)
   }
   render(){
@@ -12,12 +11,12 @@ export default class BikeRouteLegend extends Component {
               <td id="Route_Type = 'Off Street Trail'" onClick={this.handleSelectDefinitionExpression}>off street trail</td>
               <td className='legend-symbol legend-off-street-trail'>- - - -</td>
           </tr>
-          <tr id="Route_Type = 'Bicycle Lane || Sharrow || Buffered Bike Lane || Protected Bike Lane'" onClick={this.handleSelectDefinitionExpression}>
-            <td>bike lane or sharrow</td>
+          <tr>
+            <td id="Route_Type = 'Bicycle Lane'" onClick={this.handleSelectDefinitionExpression}>bike lane or sharrow</td>
             <td className='legend-symbol legend-bike-lane'>____</td>
           </tr>
-          <tr id="Route_Type = 'Recommended Route'" onClick={this.handleSelectDefinitionExpression}>
-            <td>recommended route</td>
+          <tr>
+            <td id="Route_Type = 'Recommended Route'" onClick={this.handleSelectDefinitionExpression}>recommended route</td>
             <td className='legend-symbol legend-rec-route'>____</td>
           </tr>
           <tr id="null" onClick={this.handleSelectDefinitionExpression}>

@@ -22,7 +22,15 @@ export default class Map extends Component {
       locateModalVisible: false,
       view: {},
       currentDefinitionExpression: null
-    };
+    }
+
+    this.bikeTrailArlington = new FeatureLayer({
+      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
+      renderer: bikeTrailArlingtonRenderer,
+      outFields: ["Route_Type"],
+      popupTemplate: popupBikeTrailArlington,
+      definitionExpression: this.state.currentDefinitionExpression
+    })
   }
 
   componentDidMount() {
@@ -51,14 +59,6 @@ export default class Map extends Component {
       popupTemplate: popupBikeTrailVirginia
     })
 
-    const bikeTrailArlington = new FeatureLayer({
-      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
-      renderer: bikeTrailArlingtonRenderer,
-      outFields: ["Route_Type"],
-      popupTemplate: popupBikeTrailArlington,
-      definitionExpression: this.state.currentDefinitionExpression
-    })
-
     const breweriesVirginia = new FeatureLayer({
       url: "https://maps.vedp.org/arcgis/rest/services/OpenData/OpenDataLayers/MapServer/1/query?where=1%3D1&outFields=*&outSR=4326&f=json",
       renderer: breweriesVirginiaRenderer,
@@ -66,7 +66,7 @@ export default class Map extends Component {
       popupTemplate: popupBreweriesVirginia
     })
 
-    map.add(bikeTrailArlington)
+    map.add(this.bikeTrailArlington)
     map.add(bikeTrailVirginia)
     map.add(breweriesVirginia)
 
@@ -75,6 +75,8 @@ export default class Map extends Component {
   toggleDefinitionExpression = (currentDefinitionExpression) => {
     this.setState({
       currentDefinitionExpression
+    }, () => {
+      this.bikeTrailArlington.definitionExpression = currentDefinitionExpression
     })
   }
 
