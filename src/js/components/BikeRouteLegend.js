@@ -4,7 +4,11 @@ export default class BikeRouteLegend extends Component {
   handleSelectDefinitionExpression = (event) => {
     this.props.toggleDefinitionExpression(event.target.id)
   }
+
   render(){
+
+    const currentDefinitionExpression = this.props.currentDefinitionExpression
+
     return(
       <table className="legend-bike-routes">
           <tr>
@@ -12,7 +16,7 @@ export default class BikeRouteLegend extends Component {
               <td className='legend-symbol legend-off-street-trail'>- - - -</td>
           </tr>
           <tr>
-            <td id="Route_Type = 'Bicycle Lane'" onClick={this.handleSelectDefinitionExpression}>bike lane or sharrow</td>
+            <td id="Route_Type IN ('Bicycle Lane', 'Sharrow', 'Buffered Bike Lane','Protected Bike Lane')" onClick={this.handleSelectDefinitionExpression}>bike lane or sharrow</td>
             <td className='legend-symbol legend-bike-lane'>____</td>
           </tr>
           <tr>

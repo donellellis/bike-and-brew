@@ -51,7 +51,7 @@ export default class Sidebar extends Component {
             <td></td>
           </tr>
         </table>
-        { !bikeRouteLegendIsHidden && <BikeRouteLegend toggleDefinitionExpression={this.props.toggleDefinitionExpression}/>}
+        { !bikeRouteLegendIsHidden && <BikeRouteLegend currentDefinitionExpression={this.props.currentDefinitionExpression} toggleDefinitionExpression={this.props.toggleDefinitionExpression}/>}
       </div>
     );
   }

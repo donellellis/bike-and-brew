@@ -24,13 +24,14 @@ export default class Map extends Component {
       currentDefinitionExpression: null
     }
 
-    this.bikeTrailArlington = new FeatureLayer({
-      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
-      renderer: bikeTrailArlingtonRenderer,
-      outFields: ["Route_Type"],
-      popupTemplate: popupBikeTrailArlington,
-      definitionExpression: this.state.currentDefinitionExpression
-    })
+
+    // this.bikeTrailArlington = new FeatureLayer({
+    //   url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
+    //   renderer: bikeTrailArlingtonRenderer,
+    //   outFields: ["Route_Type"],
+    //   popupTemplate: popupBikeTrailArlington,
+    //   definitionExpression: this.state.currentDefinitionExpression
+    // })
   }
 
   componentDidMount() {
@@ -66,6 +67,14 @@ export default class Map extends Component {
       popupTemplate: popupBreweriesVirginia
     })
 
+    this.bikeTrailArlington = new FeatureLayer({
+      url: "https://gis2.arlingtonva.us/arlgis/rest/services/Open_Data/od_Bike_Route_Lines/FeatureServer/0/query?where=1%3D1&outFields=Route_Type,Label&outSR=4326&f=json",
+      renderer: bikeTrailArlingtonRenderer,
+      outFields: ["Route_Type"],
+      popupTemplate: popupBikeTrailArlington,
+      definitionExpression: this.state.currentDefinitionExpression
+    })
+
     map.add(this.bikeTrailArlington)
     map.add(bikeTrailVirginia)
     map.add(breweriesVirginia)
@@ -78,6 +87,8 @@ export default class Map extends Component {
     }, () => {
       this.bikeTrailArlington.definitionExpression = currentDefinitionExpression
     })
+          // this.bikeTrailArlington.definitionExpression = currentDefinitionExpression
+
   }
 
   toggleLocateModal = () => {
@@ -93,7 +104,7 @@ export default class Map extends Component {
 
     return (
       <div className='root'>
-        <Sidebar title={TEXT.title} subtitle={TEXT.subtitle} location={TEXT.location} toggleDefinitionExpression={this.toggleDefinitionExpression}/>
+        <Sidebar currentDefinitionExpression={this.state.currentDefinitionExpression} title={TEXT.title} subtitle={TEXT.subtitle} location={TEXT.location} toggleDefinitionExpression={this.toggleDefinitionExpression}/>
         <div ref='mapView' className='map-view'>
           <ShareModal visible={shareModalVisible} toggleShareModal={this.toggleShareModal} />
           <LocateModal visible={locateModalVisible} toggleLocateModal={this.toggleLocateModal} />
